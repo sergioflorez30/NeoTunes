@@ -1,6 +1,6 @@
 package model; 
 
-enum Type_Podcast{
+enum TypePodcast{
     POLITIC,
     ENTERTAIMENT,
     FASHION,

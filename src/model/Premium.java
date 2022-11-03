@@ -12,3 +12,4 @@ public class Premium extends Consumer{
         playlist= new ArrayList<Playlist>();
 
     }
+}

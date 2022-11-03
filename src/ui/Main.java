@@ -56,20 +56,49 @@ public class Main {
 	}
 
 	public void executeOption(int option){
+		String msj = ""; 
+		String name = ""; 
+		String nickname = ""; 
 		String id = ""; 
-		String licensePlate = ""; 
-		String model = ""; 
-		double velocity = 0; 
-		double position = 0; 
+		String url = "";  
+		int type = 0; 
 
 		switch(option){
-			case 1: 
-				
+			case 1:
+				System.out.println("we are going to register a producer"); 
+				System.out.println("type the nickname");
+		        nickname=reader.next();
+		        System.out.println("type the id");
+		        id= reader.next();
+		        System.out.println("type the url picture");
+		        url= reader.next();
+		        System.out.println("type your name");
+		        name= reader.next();
+		        System.out.println("type the type of producer user... 1. creator content.2. Artist");
+		        type= validateIntegerInput();
+		        if((type==2||type==1) && type != -1){
+		            System.out.println(controller.registerProducer(nickname, id, url, name, type));
+		         }
+		         else{
+		            System.out.println("enter a available option... :(");
+		         }
 
 				break; 
 
 			case 2: 
-				  
+
+				System.out.println("we are going to register a consumer");
+				System.out.println("type the nickname");
+		         nickname=reader.next();
+		        System.out.println("type the id");
+		         id= reader.next();
+		        System.out.println("type the type of consumer user...  1. standard.2. premium");
+		        type= validateIntegerInput();
+		         if((type==2 || type==1) && type != -1){
+		            System.out.println(controller.registerConsumer(nickname, id,type));
+		         } else{
+		            System.out.println("enter a available option... :(");
+		         } 
 
 				break; 
 

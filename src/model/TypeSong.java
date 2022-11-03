@@ -1,6 +1,6 @@
 package model;
 
-enum Types_Song{
+enum TypeSong{
     ROCK,
     POP,
     TRAP,

@@ -5,7 +5,7 @@ public class Song extends Audio{
     private String album;
     private double price;
     private int numberSales;
-    private Types_Song typeSong;
+    private TypeSong typeSong;
   
 
     public Song(String name, String url, String duration,String album, double price, int option){
@@ -16,13 +16,13 @@ public class Song extends Audio{
 
         switch(option){
             case 1:
-            typeSong=Types_Song.ROCK;
+            typeSong=TypeSong.ROCK;
             case 2:
-            typeSong=Types_Song.POP;
+            typeSong=TypeSong.POP;
             case 3:
-            typeSong=Types_Song.TRAP;
+            typeSong=TypeSong.TRAP;
             case 4:
-            typeSong=Types_Song.HOUSE;
+            typeSong=TypeSong.HOUSE;
 
         }
     }
@@ -58,12 +58,12 @@ public class Song extends Audio{
     }
 
 
-    public Types_Song getTypeSong() {
+    public TypeSong getTypeSong() {
         return typeSong;
     }
 
 
-    public void setTypeSong(Types_Song typeSong) {
+    public void setTypeSong(TypeSong typeSong) {
         this.typeSong = typeSong;
     }
     

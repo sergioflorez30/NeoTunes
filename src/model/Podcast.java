@@ -3,7 +3,7 @@ package model;
 public class Podcast extends Audio{
 
     private String description;
-    private Type_Podcast typePodcast;
+    private TypePodcast typePodcast;
 
 
     public Podcast(String name, String url, String duration,String description,int option) {
@@ -12,13 +12,13 @@ public class Podcast extends Audio{
 
         switch(option){
             case 1:
-            typePodcast=Type_Podcast.POLITIC;
+            typePodcast=TypePodcast.POLITIC;
             case 2:
-            typePodcast=Type_Podcast.ENTERTAIMENT;
+            typePodcast=TypePodcast.ENTERTAIMENT;
             case 3:
-            typePodcast=Type_Podcast.FASHION;
+            typePodcast=TypePodcast.FASHION;
             case 4:
-            typePodcast=Type_Podcast.VIDEOGAME;
+            typePodcast=TypePodcast.VIDEOGAME;
 
         }
     }
@@ -31,11 +31,11 @@ public class Podcast extends Audio{
         this.description = description;
     }
 
-    public Type_Podcast getTypePodcast() {
+    public TypePodcast getTypePodcast() {
         return typePodcast;
     }
 
-    public void setTypePodcast(Type_Podcast typePodcast) {
+    public void setTypePodcast(TypePodcast typePodcast) {
         this.typePodcast = typePodcast;
     }
 
