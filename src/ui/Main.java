@@ -1,18 +1,26 @@
 package ui; 
 
-
-import model.*;
 import java.util.Scanner;
+import model.MusicAppController;
+
 
 public class Main {
 
-	private MusicAppController controller;
 	private Scanner reader;
+	private MusicAppController controller;
+	
 
 	public Main() {
-		controller = new MusicAppController();
 		reader = new Scanner(System.in);
+		controller = new MusicAppController();
+		
 
+	}
+	public Scanner getReader(){
+		return reader; 
+	}
+	public MusicAppController getController(){
+		return controller; 
 	}
 
 	public static void main(String[] args) {
@@ -40,7 +48,7 @@ public class Main {
 				"1. register a producer user\n" +
 				"2. register a consumer user \n" +
 				"3. register song or Podcast\n" +
-				"4. register playlist\n\n" +
+				"4. register playlist\n" +
 				"5. edit playlist\n" +
 				"0. Exit. ");
 		option =  validateIntegerInput();
@@ -87,10 +95,6 @@ public class Main {
 				System.out.println("Invalid Option");
 				break; 
 		}
-	}
-
-	public Scanner getReader(){
-		return reader; 
 	}
 
 	public int validateIntegerInput(){

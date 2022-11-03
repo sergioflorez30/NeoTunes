@@ -7,12 +7,13 @@ import java.util.GregorianCalendar;
 import java.util.Random;
 
 
-public class MusicApp {
+public class MusicAppController {
 
     private ArrayList <User> users;
     private ArrayList <Audio> audios;
 
-    public MusicApp() {
+    public MusicAppController() {
         users= new ArrayList<User>();
         audios= new ArrayList<Audio>();
     }
+}
