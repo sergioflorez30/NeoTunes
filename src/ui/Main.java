@@ -56,12 +56,17 @@ public class Main {
 	}
 
 	public void executeOption(int option){
-		String msj = ""; 
 		String name = ""; 
 		String nickname = ""; 
+		String album = ""; 
 		String id = ""; 
-		String url = "";  
-		int type = 0; 
+		String url = "";
+		String description = "";   
+		int type = 0;
+		int duration =0;
+		int typeSong = 0; 
+		int typePodcast =0; 
+		double price =0.0;   
 
 		switch(option){
 			case 1:
@@ -103,6 +108,56 @@ public class Main {
 				break; 
 
 			case 3: 
+
+				System.out.println("type the nickname of artist or content creator");
+		        nickname=reader.next();
+		        System.out.println("type the audios name");
+		        name= reader.next();
+		        System.out.println("type the url");
+		        url= reader.next();
+		        System.out.println("type the audios duration");
+		        duration=validateIntegerInput();
+		        if(duration == -1){
+		        	System.out.println("enter a available  option .... :("); 
+		        }
+		        System.out.println("type the type of audio....  1. Song.2. podcast");
+		        type= validateIntegerInput();
+
+		        switch(type){
+		            case 1:
+		            System.out.println("enter the name of album");
+		            album=reader.next();
+		            System.out.println("enter the price of song");
+		            price=validateDoubleInput();
+		            if(price == -1){
+		        	System.out.println("enter a available  option .... :("); 
+		        	}
+		            System.out.println("enter the type of song.1.rock,2.pop,3.trap,4.house");
+		            typeSong=reader.nextInt();
+		            if(typeSong>4||typeSong<1){
+		                System.out.println("you must enter an available option");
+		            } else{
+		                System.out.println(controller.registerSong(nickname, name, url, duration, album, price, typeSong));
+		             }
+
+		             break;
+
+		            case 2:
+		             System.out.println("type the podcasts description");
+		             description=reader.nextLine();
+		             System.out.println("type  the type of podcast... .1.Politic, 2.Entertaiment, 3. Fashion, 4. Videogame");
+		             typePodcast=validateIntegerInput(); 
+		             if(typeSong>4||typeSong<1){
+		             	System.out.println("enter a available  option .... :("); 
+		             }
+		             reader.next(); 
+		             System.out.println(controller.registerPodcast(nickname, name, url, duration,description, typePodcast));
+		             break;
+
+		            default:
+		            System.out.println("you must enter an available option");
+		             break;
+		            }
 				
 
 				break; 

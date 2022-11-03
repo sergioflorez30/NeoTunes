@@ -6,7 +6,7 @@ public class Podcast extends Audio{
     private TypePodcast typePodcast;
 
 
-    public Podcast(String name, String url, String duration,String description,int option) {
+    public Podcast(String name, String url, int duration,String description,int option) {
         super(name,url,duration);
         this.description = description;
 

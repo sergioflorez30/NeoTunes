@@ -29,6 +29,19 @@ public class MusicAppController {
 		return user; 
 	}
 
+	public Audio searchAudio(String name){
+        Audio audio=null;
+        boolean isFound= false;
+         for(int i=0;i<audios.size() && !isFound ;i++){
+            if( audios.get(i).getName().equalsIgnoreCase(name)){
+                audio=audios.get(i);
+                isFound= true;
+            }
+         }
+    
+        return audio;
+    }
+
 	public Calendar dateActual(){
         
         Calendar calendar=new GregorianCalendar(2022,Calendar.NOVEMBER,8);
@@ -77,6 +90,59 @@ public class MusicAppController {
                 msj = "Premium Consumer created"; 
             }
         
+        }
+        return msj;
+
+    
+}
+    public String registerSong(String nickname,String  name, String  url, int duration, String  album, double price, int  typeSong){
+
+    	String msj = "song created";
+        User user = searchUser(nickname);
+
+        if (user == null) {
+            msj = "the user doesn't exist";
+        } else {
+             if(user instanceof Artist){
+               Audio song= searchAudio(name);
+                 if(song!= null){
+                     msj="the song exist";
+                 }
+
+                 else{
+                    audios.add(new Song(name, url, duration, album, price, typeSong));
+                    Artist artist = ( (Artist)(user) );
+                    artist.getSongs().add((Song)audios.get(-1));
+                 }
+             }
+             else{
+                msj="the user isnot a Artist";
+             }
+        }
+        return msj;
+
+    }
+    public String registerPodcast(String nickname,String name, String  url, int duration, String description,  int typePodcast){
+    	String msj = "podcast created";
+        User user = searchUser(nickname);
+
+        if (user == null) {
+            msj = "the user doesn't exist";
+        } else {
+
+            if(user instanceof Creator){
+               Audio podcast= searchAudio(name);
+                if(podcast!= null){
+                    msj="the podcast exist";
+                } else{
+                    audios.add(new Podcast(name, url, duration, description, typePodcast));
+                    Creator creator = ( (Creator)(user) );
+                    creator.getPodcasts().add((Podcast)audios.get(-1));
+                }
+             }
+             else{
+                msj="the user isnot a creator";
+             }
         }
         return msj;
 

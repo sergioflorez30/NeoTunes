@@ -3,11 +3,11 @@ package model;
 public abstract class Audio{
     private String name;
     private String url;
-    private String duration;
+    private int duration;
     private int view;
 
 
-    public Audio(String name, String url, String duration) {
+    public Audio(String name, String url, int duration) {
         this.name = name;
         this.url = url;
         this.duration = duration;
@@ -35,12 +35,12 @@ public abstract class Audio{
     }
 
 
-    public String getDuration() {
+    public int getDuration() {
         return duration;
     }
 
 
-    public void setDuration(String duration) {
+    public void setDuration(int duration) {
         this.duration = duration;
     }
 
