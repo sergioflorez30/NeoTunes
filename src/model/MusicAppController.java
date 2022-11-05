@@ -187,7 +187,7 @@ public class MusicAppController {
                  else{
                     audios.add(new Song(name, url, duration, album, price, typeSong));
                     Artist artist = ( (Artist)(user) );
-                    artist.getSongs().add((Song)audios.get(-1));
+                    artist.getSongs().add(new Song(name, url, duration, album, price, typeSong));
                  }
              }
              else{
@@ -212,7 +212,7 @@ public class MusicAppController {
                 } else{
                     audios.add(new Podcast(name, url, duration, description, typePodcast));
                     Creator creator = ( (Creator)(user) );
-                    creator.getPodcasts().add((Podcast)audios.get(-1));
+                    creator.getPodcasts().add(new Podcast(name, url, duration, description, typePodcast));
                 }
              }
              else{

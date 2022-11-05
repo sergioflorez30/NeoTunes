@@ -146,13 +146,12 @@ public class Main {
 
 		            case 2:
 		             System.out.println("type the podcasts description");
-		             description=reader.nextLine();
+		             description=reader.next();
 		             System.out.println("type  the type of podcast... .1.Politic, 2.Entertaiment, 3. Fashion, 4. Videogame");
 		             typePodcast=validateIntegerInput(); 
-		             if(typeSong>4||typeSong<1){
+		             if(typePodcast>4||typePodcast<1){
 		             	System.out.println("enter a available  option .... :("); 
 		             }
-		             reader.next(); 
 		             System.out.println(controller.registerPodcast(nickname, name, url, duration,description, typePodcast));
 		             break;
 
