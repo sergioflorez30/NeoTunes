@@ -92,6 +92,22 @@ public class Playlist{
              return 0;
      }   
     }
+    public boolean searchAudio(String name) {
+
+        Audio obj = null;
+        boolean search = false;
+        if (audios != null) {
+            for (int i = 0; i < audios.size() && !search; i++) {
+                if (audios.get(i).getName().equalsIgnoreCase(name)) {
+                    obj = audios.get(i);
+                    search = true;
+                }
+            }
+        }
+
+        return search;
+
+    }
 
 
 }

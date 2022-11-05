@@ -61,7 +61,9 @@ public class Main {
 		String album = ""; 
 		String id = ""; 
 		String url = "";
-		String description = "";   
+		String description = ""; 
+		String namePlaylist = "";   
+		String audio = ""; 
 		int type = 0;
 		int duration =0;
 		int typeSong = 0; 
@@ -180,6 +182,25 @@ public class Main {
 				break;
 
 			case 5:
+				System.out.println("type the users nickname... standard or premium");
+		        nickname=reader.next();
+		        System.out.println("type the option you want.. 1.add audio in playlist    or     2.eliminate audio in playlist");
+		        type= validateIntegerInput(); 
+		        if((type==1 || type==2) && type != -1){
+
+		            System.out.println("type the playlists name");
+		            namePlaylist=reader.next();
+		            System.out.println("type  the audios name");
+		            audio=reader.next();
+
+		            System.out.println(controller.editAudioPlaylist(type, nickname, namePlaylist, audio));
+		             
+		         }
+
+		         else{
+		            System.out.println("you must enter an available option");
+		         }
+		    
 
 				break; 
 

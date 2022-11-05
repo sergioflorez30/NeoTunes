@@ -256,4 +256,58 @@ public class MusicAppController {
        return msj;
 
     }
+    public String editAudioPlaylist(int option,String nickname,String namePlaylist, String audio){
+        String msj = ""; 
+        Audio newAudio = searchAudio(audio);
+        if(newAudio == null){
+            msj = "this song dont exist";
+        }
+        else{
+            int type;
+            if(newAudio instanceof Song){
+                type =1;
+            }
+            else{
+                type =2;
+            }
+            User theUser = searchUser(nickname);
+            if(theUser == null){
+                msj = "this user dont exist"; 
+            }
+            else{
+                if(option ==1){
+
+                    if(theUser instanceof Standard){
+                        Standard newStandart = ((Standard)(theUser));
+                        msj = newStandart.addAudioPlaylist(namePlaylist, type, newAudio,audio); 
+                    }
+                    else if(theUser instanceof Premium){
+                        Premium newPremium = ((Premium)(theUser));
+                        msj = newPremium.addAudioPlaylist(namePlaylist,type,newAudio, audio);
+                    }
+                    else{
+                        msj = "this user isnot premium or standard";
+                    }
+                }
+                if(option == 2){
+
+                    if(theUser instanceof Standard){
+                        Standard newStandart = ((Standard)(theUser));
+                        msj = newStandart.delateAudio(newAudio, namePlaylist, audio);
+                    }
+                    else if(theUser instanceof Premium){
+                        Premium newPremium = ((Premium)(theUser));
+                        msj = newPremium.delateAudio(newAudio, namePlaylist, audio);
+                    }
+                    else{
+                        msj = "this user isnot premium or standard";
+                    }
+
+                }
+            }
+        }
+
+        return msj;
+
+    }
 }
