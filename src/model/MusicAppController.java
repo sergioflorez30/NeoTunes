@@ -11,6 +11,8 @@ public class MusicAppController {
 
     private ArrayList <User> users;
     private ArrayList <Audio> audios;
+    public static final int ROWS = 6; 
+    public static final int COLUMNS = 6; 
 
     public MusicAppController() {
         users= new ArrayList<User>();
@@ -47,6 +49,79 @@ public class MusicAppController {
         Calendar calendar=new GregorianCalendar(2022,Calendar.NOVEMBER,8);
         return calendar ;
          
+    }
+
+    public int[][] generateMatriz(){
+
+        int matriz[][]=new int[ROWS][COLUMNS];
+
+        for(int i=0;i<ROWS;i++){
+            for(int j=0;i<COLUMNS;i++){
+                matriz[i][j]=generateNumber();
+            }
+        }
+
+        return matriz;
+
+    }
+    public int generateNumber(){
+
+        int num=0;
+        Random r= new Random();
+        num= (int) (r.nextInt()* 9) + 0; 
+       
+        return num;
+    }
+    public String generateCode(int option,int[][]matriz){
+        String code=null;
+        switch(option){
+            case 1:
+             for(int i=5;i<0;i--){
+                code+=matriz[i][0];
+             }
+             for(int j=1, h=1;j>4 && h>4;j++,h++){
+                code+=matriz[j][h];
+             }
+             for(int k=5;k<0;k--){
+                code+=matriz[k][5];
+             }
+            break;
+
+            case 2:
+             for(int i=0;i<2;i++){
+                code+=matriz[0][i];
+             }
+             for(int j=1;j<5;j++){
+                code+=matriz[j][2];
+             } 
+             for(int k=5;k<0;k--){
+                code+=matriz[k][3];
+             }
+             for(int u=3;u>5;u++){
+                code+=matriz[0][u];
+             }
+
+             break;
+               
+             case 3:
+             for (int i=5;i>=0;i--){
+                for(int j=5;j>=0;j--){
+                    int sum = i+j;
+                    if (sum%2!=0){
+                        if(sum!=1){
+                            code+=matriz[i][j]+" ";
+                        }
+                    }
+
+                }
+            }
+             break;
+
+
+           }
+
+      return code;
+
     }
 
     public String registerProducer(String nickname , String id,String url, String name,int option){
@@ -145,6 +220,40 @@ public class MusicAppController {
              }
         }
         return msj;
+
+    }
+    public String registerPlaylist(String nickname,String name,int option){
+
+        String msj = "Playslist created";
+        User user = searchUser(nickname);
+
+        if (user == null) {
+            msj = "the user doesn't exist";
+        } else {
+            if(user instanceof Standard){
+                int [][]matriz=generateMatriz();
+                String code= generateCode(option, matriz);
+                Standard standard = ( (Standard)(user) );
+                boolean validation = standard.addPlaylist(name, matriz, code, option);
+                if(validation ==false){
+                  msj="the playlist exist";
+                }
+          }
+          else if(user instanceof Premium){
+            int [][]matriz=generateMatriz();
+            String code= generateCode(option, matriz);
+            Premium premium = ( (Premium)(user) );
+            boolean validation = premium.addPlaylist(name, matriz, code, option);
+            if(validation ==false){
+              msj="the playlist exist";
+            }
+          }
+          else{
+            msj="this user is not standard or premium";
+          }
+        
+       }
+       return msj;
 
     }
 }

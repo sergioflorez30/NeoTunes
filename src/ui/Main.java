@@ -164,6 +164,19 @@ public class Main {
 
 			case 4: 
 
+				System.out.println("type the users nickname... standard or premium");
+		        nickname=reader.next();
+		        System.out.println("type the playlists name");
+		        name= reader.next();
+		        System.out.println("type the playlists type...  1.only songs   2.only podcasts   3. podcast and songs");
+		        type= validateIntegerInput();
+		        if(type>4|| type<1){
+		            System.out.println("you must enter an available option");
+		        }
+		        else{
+		            System.out.println(controller.registerPlaylist(nickname, name, type));
+		        }
+
 				break;
 
 			case 5:
