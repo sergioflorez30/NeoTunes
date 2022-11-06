@@ -16,9 +16,12 @@ public class Main {
 		
 
 	}
+	//returns the class, that is, the class becomes visible to the main method.
 	public Scanner getReader(){
 		return reader; 
 	}
+
+	//returns the class, that is, the class becomes visible to the main method.
 	public MusicAppController getController(){
 		return controller; 
 	}
@@ -40,6 +43,11 @@ public class Main {
 		main.getReader().close();
 
 	}
+	/**
+	getOptionShowMenu: This method shows all the options available in the menu, 
+					after having the user enter an option.
+	@return option: int: this parameter read the option entered by the user. 
+	*/
 
 	public int getOptionShowMenu(){
 		int option = 0; 
@@ -213,6 +221,10 @@ public class Main {
 				break; 
 		}
 	}
+	/**
+	 * validateIntegerInput: this method validates that the option entered by the user is actually an integer data type
+	 * @return option: is a int option. 
+	 */
 
 	public int validateIntegerInput(){
 		int option = 0; 
@@ -228,6 +240,10 @@ public class Main {
 
 		return option; 
 	}
+	/**
+	 * validateDoubleInput: this method validates that the option entered by the user is actually an double data type
+	 * @return option: is a double or int  option. 
+	 */
 
 	public double validateDoubleInput(){
 		double option = 0; 

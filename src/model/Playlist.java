@@ -90,8 +90,13 @@ public class Playlist{
                 return 3;
             default:
              return 0;
-     }   
+        }   
     }
+    /**
+     * searchAudio: this method searh a audio in the matriz.
+     * @param name: String: the name of the audio
+     * @return search : a boolean of found or not found. 
+     */
     public boolean searchAudio(String name) {
 
         Audio obj = null;

@@ -8,8 +8,4 @@ public abstract class Consumer extends User {
         super(nickname, id, bondingdate);
     }
 
-
-
-    
-    
 }

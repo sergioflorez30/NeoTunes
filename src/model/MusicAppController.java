@@ -18,6 +18,11 @@ public class MusicAppController {
         users= new ArrayList<User>();
         audios= new ArrayList<Audio>();
     }
+    /**
+     * searchUser: This method compares the nicknames of existing users to see if there is already one.
+     * @param nickname: String: the nickname user.
+     * @return pos: a object of type user. 
+     */
    
     public User searchUser(String nickname){
 		User user = null; 
@@ -30,6 +35,11 @@ public class MusicAppController {
 		}
 		return user; 
 	}
+    /**
+     * searchAudio: This method compares the names of existing audios to see if there is already one.
+     * @param name: String: the audios name.
+     * @return pos: a object of type audio. 
+     */
 
 	public Audio searchAudio(String name){
         Audio audio=null;
@@ -43,6 +53,10 @@ public class MusicAppController {
     
         return audio;
     }
+    /**
+     * dateActual: this method give the actual date.
+     * @return calendar: the day actual. 
+     */
 
 	public Calendar dateActual(){
         
@@ -50,6 +64,10 @@ public class MusicAppController {
         return calendar ;
          
     }
+    /**
+     * generateMatriz: this method generate a matriz.
+     * @return matriz : a matriz of int. 
+     */
 
     public int[][] generateMatriz(){
 
@@ -64,6 +82,11 @@ public class MusicAppController {
         return matriz;
 
     }
+    /**
+     * generateNumber: this method generate a random number
+     * @return num : int: a random number. 
+     */
+
     public int generateNumber(){
 
         int num=0;
@@ -72,6 +95,12 @@ public class MusicAppController {
        
         return num;
     }
+    /**
+     * generateCode: this method generate a code depended of the playlist type
+     * @param option: int: the playlist type.
+     * @param matriz: int[][]: the playlist matriz.
+     * @return code : a msj of the matriz. 
+     */
     public String generateCode(int option,int[][]matriz){
         String code=null;
         switch(option){
@@ -123,6 +152,15 @@ public class MusicAppController {
       return code;
 
     }
+    /**
+     * registerProducer: this method register a producer.
+     * @param nickname: String: this is the producers nickname.
+     * @param id: String: this is de producers id.
+     * @param url: String: this is the image url.
+     * @param name: String: this is the real producer name.
+     * @param option: int: the producer type. 
+     * @return msj: String: a confirm message.
+     */
 
     public String registerProducer(String nickname , String id,String url, String name,int option){
     	
@@ -147,6 +185,13 @@ public class MusicAppController {
         return msj;
 
     }
+    /**
+     * registerConsumer: this method register a consumer.
+     * @param nickname: String: this is the consumer nickname.
+     * @param id: String: this is de consumer id.
+     * @param option: int: the consumer type. 
+     * @return msj: String: a confirm message.
+     */
     public String registerConsumer(String nickname , String id ,int option){
 
     	String msj = "";
@@ -169,7 +214,18 @@ public class MusicAppController {
         return msj;
 
     
-}
+    }
+    /**
+     * registerSong: this method register a song.
+     * @param nickname: String: this is the autor nickname.
+     * @param name: String: this is the real song name.
+     * @param url: String: this is the image url.
+     * @param duration: int : the song duration.
+     * @param album: String: the album. 
+     * @param price: double: the price in dollars of the song. 
+     * @param typeSong: int: the song type. 
+     * @return msj: String: a confirm message.
+     */
     public String registerSong(String nickname,String  name, String  url, int duration, String  album, double price, int  typeSong){
 
     	String msj = "song created";
@@ -197,6 +253,16 @@ public class MusicAppController {
         return msj;
 
     }
+    /**
+     * registerPodcast: this method register a podcast.
+     * @param nickname: String: this is the autor nickname.
+     * @param name: String: this is the real podcast name.
+     * @param url: String: this is the image url.
+     * @param duration: int : the podcast duration. 
+     * @param description: String: the description of the podcast. 
+     * @param typePodcast: int: the podcast type. 
+     * @return msj: String: a confirm message.
+     */
     public String registerPodcast(String nickname,String name, String  url, int duration, String description,  int typePodcast){
     	String msj = "podcast created";
         User user = searchUser(nickname);
@@ -222,6 +288,13 @@ public class MusicAppController {
         return msj;
 
     }
+     /**
+     * registerPlaylist: this method register a playlist.
+     * @param nickname: String: this is the user nickname.
+     * @param name: String: this is de playlist name.
+     * @param option: int: the playlist type. 
+     * @return msj: String: a confirm message.
+     */
     public String registerPlaylist(String nickname,String name,int option){
 
         String msj = "Playslist created";
@@ -256,6 +329,14 @@ public class MusicAppController {
        return msj;
 
     }
+    /**
+     * editAudioPlaylist: this method add a audio to playlist.
+     * @param option: int: the playlist type. 
+     * @param nickname: String: this is the user nickname.
+     * @param namePlaylist: String: this is de playlist name.
+     * @param audio: String: the audios name. 
+     * @return msj: String: a confirm message.
+     */
     public String editAudioPlaylist(int option,String nickname,String namePlaylist, String audio){
         String msj = ""; 
         Audio newAudio = searchAudio(audio);

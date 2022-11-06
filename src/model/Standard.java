@@ -13,6 +13,14 @@ public class Standard extends Consumer implements ICreatePlaylist, IEditPlaylist
         super(nickname, id, bondingdate);
         playlist= new Playlist[SIZE];
     }
+    /**
+     * addPlaylist: this method add a playlist for the user. 
+     * @param name: Stringthe playlists name.
+     * @param matriz: int[][]. the matriz for the playlist
+     * @param code: String. the code of the matriz
+     * @param option: the type of the playlist
+     * @return validation : a boolean for confirmation. 
+     */
     @Override
     public boolean addPlaylist(String name, int[][] matriz, String code,int option){
 
@@ -39,6 +47,11 @@ public class Standard extends Consumer implements ICreatePlaylist, IEditPlaylist
          }
         return validation;
     }
+    /**
+     * searchPlaylist: This method compares the names of existing playlist to see if there is already one.
+     * @param name: String: the playlist name.
+     * @return newPlaylist: a object of playlist audio. 
+     */
     @Override
     public Playlist searchPlaylist(String name){
         Playlist newPlaylist=null;
@@ -52,6 +65,10 @@ public class Standard extends Consumer implements ICreatePlaylist, IEditPlaylist
     
         return newPlaylist;
     }
+    /**
+     * availablePlaylist: searh a available position in the array 
+     * @return validation: a boolean of found or not found
+     */
     
     public boolean availablePlaylist(){
         boolean validation= true;
@@ -61,6 +78,14 @@ public class Standard extends Consumer implements ICreatePlaylist, IEditPlaylist
      
         return validation;
     }
+     /**
+     * addAudioPlaylist: this method add a audio for a specific playlist.
+     * @param namePlaylist: String: the playlist name
+     * @param typeAudio: int: the audios type.
+     * @param audio:  Audio: the object audio. 
+     * @param audioName: String: the audios name
+     * @return msj: String: a confirmation message 
+     */
 
     @Override
     public String addAudioPlaylist(String namePlaylist,int typeAudio, Audio audio, String audioName){
@@ -116,9 +141,16 @@ public class Standard extends Consumer implements ICreatePlaylist, IEditPlaylist
         return msj;
 
     }
+    /**
+     * delateAudio: this method delate a audio for a specific playlist.
+     * @param audio:  Audio: the object audio.
+     * @param namePlaylist: String: the playlist name 
+     * @param audioName: String: the audios name
+     * @return msj: String: a confirmation message 
+     */
 
     @Override
-    public String delateAudio(Audio auido, String namePlaylist, String audioName){
+    public String delateAudio(Audio audio, String namePlaylist, String audioName){
 
         String msj="";
         Playlist thePlaylist=searchPlaylist(namePlaylist);
@@ -128,7 +160,7 @@ public class Standard extends Consumer implements ICreatePlaylist, IEditPlaylist
         else{
             boolean audiorepit=thePlaylist.searchAudio(audioName);
           if(audiorepit==true){
-            thePlaylist.getAudios().remove(auido);
+            thePlaylist.getAudios().remove(audio);
             msj="has been removed successfully";
             }
             else{

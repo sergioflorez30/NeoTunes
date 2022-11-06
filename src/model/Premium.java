@@ -12,6 +12,14 @@ public class Premium extends Consumer implements ICreatePlaylist, IEditPlaylist{
         playlist= new ArrayList<Playlist>();
 
     }
+    /**
+     * addPlaylist: this method add a playlist for the user. 
+     * @param name: Stringthe playlists name.
+     * @param matriz: int[][]. the matriz for the playlist
+     * @param code: String. the code of the matriz
+     * @param option: the type of the playlist
+     * @return msj : a boolean for confirmation. 
+     */
 
     @Override
     public boolean addPlaylist(String name, int[][] matriz, String code,int option){
@@ -29,6 +37,11 @@ public class Premium extends Consumer implements ICreatePlaylist, IEditPlaylist{
         return msj;
 
     }
+    /**
+     * searchPlaylist: This method compares the names of existing playlist to see if there is already one.
+     * @param name: String: the playlist name.
+     * @return newPlaylist: a object of playlist audio. 
+     */
 
     @Override
     public Playlist searchPlaylist(String name){
@@ -43,6 +56,14 @@ public class Premium extends Consumer implements ICreatePlaylist, IEditPlaylist{
     
         return newPlaylist;
     }
+    /**
+     * addAudioPlaylist: this method add a audio for a specific playlist.
+     * @param namePlaylist: String: the playlist name
+     * @param typeAudio: int: the audios type.
+     * @param audio:  Audio: the object audio. 
+     * @param audioName: String: the audios name
+     * @return msj : msj: String: a confirmation message 
+     */
 
     @Override
     public String addAudioPlaylist(String namePlaylist,int typeAudio, Audio audio, String audioName){
@@ -95,9 +116,16 @@ public class Premium extends Consumer implements ICreatePlaylist, IEditPlaylist{
         return msj;
 
     }
+    /**
+     * delateAudio: this method delate a audio for a specific playlist.
+     * @param audio:  Audio: the object audio.
+     * @param namePlaylist: String: the playlist name 
+     * @param audioName: String: the audios name
+     * @return msj : msj: String: a confirmation message 
+     */
 
     @Override
-    public String delateAudio(Audio auido, String namePlaylist, String audioName ){
+    public String delateAudio(Audio audio, String namePlaylist, String audioName ){
         String msj="";
         Playlist thePlaylist=searchPlaylist(namePlaylist);
         if(thePlaylist==null){
@@ -106,7 +134,7 @@ public class Premium extends Consumer implements ICreatePlaylist, IEditPlaylist{
         else{
             boolean audiorepit=thePlaylist.searchAudio(audioName);
             if(audiorepit==true){
-            thePlaylist.getAudios().remove(auido);
+            thePlaylist.getAudios().remove(audio);
             msj="has been removed successfully";
           }
           else{
