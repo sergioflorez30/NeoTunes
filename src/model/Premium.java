@@ -147,6 +147,50 @@ public class Premium extends Consumer implements ICreatePlaylist, IEditPlaylist{
 
     }
 
+    @Override
+    public String sharePlaylist(String namePlaylist){
+        String msj="";
+        Playlist playlist=searchPlaylist(namePlaylist);
+        if(playlist==null){
+           msj="dont exist the playslist";
+        }
+        else{
+           msj=playlist.getCode();
+        }
+    
+       return msj;
+
+    }
+
+    @Override
+    public String sharePlaylistMatriz(String namePlaylist){
+        String msj="";
+        Playlist playlist=searchPlaylist(namePlaylist);
+        if(playlist==null){
+            msj="";
+        }
+        else{
+            msj= printMatrix(playlist.getMatriz());
+        }
+
+          return msj;
+        
+    }
+
+    @Override
+    public String printMatrix(int[][] matrix){
+        String print = "";
+        for (int i = 0; i < matrix.length; i++) { // filas numbers.length
+        for (int j = 0; j < matrix[0].length; j++) { // columnas numbers[0].length
+          print += matrix[i][j] + " ";
+        }
+        print += "\n";
+      }
+  
+      return print;
+        
+    }
+
       
 
 }

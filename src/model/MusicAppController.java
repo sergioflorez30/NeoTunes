@@ -89,11 +89,11 @@ public class MusicAppController {
 
     public int generateNumber(){
 
-        int num=0;
         Random r= new Random();
-        num= (int) (r.nextInt()* 9) + 0; 
        
-        return num;
+         int value = r.nextInt(8 + 1) + 1;
+       
+        return value;
     }
     /**
      * generateCode: this method generate a code depended of the playlist type
@@ -105,13 +105,13 @@ public class MusicAppController {
         String code=null;
         switch(option){
             case 1:
-             for(int i=5;i<0;i--){
+             for(int i=5;i>0;i--){
                 code+=matriz[i][0];
              }
-             for(int j=1, h=1;j>4 && h>4;j++,h++){
-                code+=matriz[j][h];
+             for(int j=1;j<5;j++){
+                code+=matriz[j][j];
              }
-             for(int k=5;k<0;k--){
+             for(int k=5;k>0;k--){
                 code+=matriz[k][5];
              }
             break;
@@ -123,10 +123,10 @@ public class MusicAppController {
              for(int j=1;j<5;j++){
                 code+=matriz[j][2];
              } 
-             for(int k=5;k<0;k--){
+             for(int k=5;k>0;k--){
                 code+=matriz[k][3];
              }
-             for(int u=3;u>5;u++){
+             for(int u=3;u<5;u++){
                 code+=matriz[0][u];
              }
 
@@ -391,4 +391,30 @@ public class MusicAppController {
         return msj;
 
     }
+
+    public String sharePlaylist(String nickname, String namePlaylist){
+        String code = ""; 
+        User user = searchUser(nickname);
+
+        if(user == null){
+            code = "this user doesnt exist";
+        } else{
+            if(user instanceof Standard){
+                Standard newStandart = ( (Standard)(user) );
+                code = newStandart.sharePlaylist(namePlaylist)+ "\n" + newStandart.sharePlaylistMatriz(namePlaylist);
+            }
+            else if(user instanceof Premium){
+                Premium newPremium = ( (Premium)(user) );
+                code = newPremium.sharePlaylist(namePlaylist) + "\n" +  newPremium.sharePlaylistMatriz(namePlaylist);
+            }
+            else{
+                code = "must enter a user type consumer"; 
+            }
+        }
+
+        return code; 
+    }
+
+    
+
 }
