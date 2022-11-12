@@ -58,7 +58,8 @@ public class Main {
 				"3. register song or Podcast\n" +
 				"4. register playlist\n" +
 				"5. edit playlist\n" +
-				"6.Share a playlist." + 
+				"6.Share a playlist.\n" + 
+				"7. play an audio. \n" +
 				"0. Exit. ");
 		option =  validateIntegerInput();
 		return option; 
@@ -221,6 +222,16 @@ public class Main {
 		        System.out.println(controller.sharePlaylist(nickname, namePlaylist));
 
 		        break;
+
+		     case 7: 
+
+		     	System.out.println("Type the users nickname standard or premium");
+		     	nickname = reader.next();
+		     	System.out.println("type the audios name");
+		     	audio = reader.next(); 
+		     	System.out.println(controller.playingAudio(nickname, audio));
+		     	break;
+
 
 
 			case 0: 

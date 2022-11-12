@@ -21,5 +21,18 @@ public class Artist extends Producer{
         this.songs = songs;
     }
 
+    
+    public boolean searchAudioAutor(Song song){
+        boolean isFound= false;
+        for(int i=0;i<songs.size() && !isFound ;i++){
+            if( songs.get(i) == song){
+                isFound= true;
+            }
+         }
+    
+        return isFound;
+    }
+
+
        
 }

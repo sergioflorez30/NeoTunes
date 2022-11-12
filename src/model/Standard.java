@@ -2,16 +2,19 @@ package model;
 
 import java.util.Calendar;
 import java.util.ArrayList;
+import java.util.Random;
 
 
-public class Standard extends Consumer implements ICreatePlaylist, IEditPlaylist{
+public class Standard extends Consumer implements ICreatePlaylist, IEditPlaylist, IPlaying{
     private Playlist[] playlist;
+    private ArrayList <Audio> audios;
     private final int SIZE = 20; 
 
     public Standard(String nickname, String id, Calendar bondingdate) {
 
         super(nickname, id, bondingdate);
         playlist= new Playlist[SIZE];
+        audios= new ArrayList<Audio>();
     }
     /**
      * addPlaylist: this method add a playlist for the user. 
@@ -213,6 +216,48 @@ public class Standard extends Consumer implements ICreatePlaylist, IEditPlaylist
   
       return print;
 
+    }
+    public int generateNumber(){
+
+        Random r= new Random();
+       
+         int value = r.nextInt(8 + 1) + 1;
+       
+        return value;
+    }
+    
+    @Override
+    public String play(Audio audio){
+        String msj = "." + "\n"+ "." + "\n"+ "." +  "\n" + " the audio is playing" + "." + "\n";   ; 
+        if(audios.size()==0){
+
+        }
+        else{
+            int reproduction =audios.size();
+            String ad1 = "nike -Just Do It" + "\n";
+            String ad2 = "Coca-Cola -Open Happiness" + "\n";
+            String ad3= "M&Ms -  Melts in your moth" + "\n";
+
+            if(reproduction %2 ==0){
+                int number = generateNumber();
+                switch(number){
+                case 1: 
+                    msj = ad1;
+                    break;
+                case 2:
+                    msj = ad2;
+                    break;
+                case 3:
+                    msj = ad3;
+                    break;
+                }
+            }
+            else{
+                audios.add(audio);
+            }
+        }
+
+        return msj;
     }
 
 

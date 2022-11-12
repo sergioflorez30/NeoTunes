@@ -3,13 +3,15 @@ package model;
 import java.util.Calendar;
 import java.util.ArrayList;
 
-public class Premium extends Consumer implements ICreatePlaylist, IEditPlaylist{
+public class Premium extends Consumer implements ICreatePlaylist, IEditPlaylist, IPlaying{
 
     private ArrayList <Playlist> playlist;
+    private ArrayList <Audio> audios;
 
     public Premium(String nickname, String id, Calendar bondingdate) {
         super(nickname, id, bondingdate);
         playlist= new ArrayList<Playlist>();
+        audios= new ArrayList<Audio>();
 
     }
     /**
@@ -189,6 +191,13 @@ public class Premium extends Consumer implements ICreatePlaylist, IEditPlaylist{
   
       return print;
         
+    }
+    
+    @Override
+    public String play(Audio audio){
+      String msj="."+"\n"+"."+"\n"+"."+"\n"+"the audio is playing"+"\n";
+      audios.add(audio);
+      return msj;
     }
 
       

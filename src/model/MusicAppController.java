@@ -414,6 +414,77 @@ public class MusicAppController {
 
         return code; 
     }
+    public String playingAudio(String nickname, String audio){
+
+        String msj = ""; 
+        User user = searchUser(nickname);
+
+        if(user == null){
+            msj = "this user doesnt exist";
+        }
+        else{
+            Audio newAudio = searchAudio(audio);
+            if(newAudio == null){
+                msj = "the audio doesnt exist";
+            }
+               else{
+                if(user instanceof Standard){
+                    Standard newStandart = ( (Standard)(user) );
+                    msj = newStandart.play(newAudio);
+                    updateState(newAudio);
+                }
+                else if(user instanceof Premium){
+                    Premium newPremium = ( (Premium)(user) );
+                    msj = newPremium.play(newAudio);
+                    updateState(newAudio);
+                }
+                else{
+                    msj = "must enter a user type consumer"; 
+                }
+            } 
+        }
+
+         
+
+        return msj;
+
+    }
+
+    public void updateState(Audio audio){
+    if(audio instanceof Song){
+        Song song = ( (Song)(audio) );
+        boolean val=false;
+        for(int i=0;i<users.size() && !val;i++){
+            if(users.get(i) instanceof Artist){
+                Artist artist = ( (Artist) (users.get(i)) );
+                if(artist.searchAudioAutor(song)){
+                    artist.setTotalViews(artist.getTotalPLayedTime()+1);
+                    artist.setTotalPLayedTime(song.getDuration()+artist.getTotalPLayedTime());
+                    song.setView(song.getView()+1);
+                    val=true;
+                }
+            }
+        }
+
+    }
+    else if(audio instanceof Podcast){
+       Podcast podcast = ( ( Podcast)(audio) );
+           boolean val=false;
+           for(int i=0;i<users.size() && !val;i++){
+               if(users.get(i) instanceof Creator){
+                   Creator creator = ( (Creator)(users.get(i)) );
+                   if(creator.searchAudioAutor(podcast)){
+                       creator.setTotalViews(creator.getTotalPLayedTime()+1);
+                       creator.setTotalPLayedTime(podcast.getDuration()+creator.getTotalPLayedTime());
+                       podcast.setView(podcast.getView()+1);
+                       val=true;
+                   }
+               }
+            }
+
+        }
+    }
+
 
     
 

@@ -57,8 +57,5 @@ public abstract class Producer extends User{
     public void setTotalPLayedTime(int totalPLayedTime) {
         this.totalPLayedTime = totalPLayedTime;
     }
-
-    
-
     
 }
