@@ -11,12 +11,14 @@ public class MusicAppController {
 
     private ArrayList <User> users;
     private ArrayList <Audio> audios;
+    private ArrayList<Shop> shops;
     public static final int ROWS = 6; 
     public static final int COLUMNS = 6; 
 
     public MusicAppController() {
         users= new ArrayList<User>();
         audios= new ArrayList<Audio>();
+        shops = new ArrayList<Shop>(); 
     }
     /**
      * searchUser: This method compares the nicknames of existing users to see if there is already one.
@@ -485,7 +487,68 @@ public class MusicAppController {
         }
     }
 
+    public String buySong(String nickname, String nameSong){
 
-    
+        String msj = ""; 
+        User user = searchUser(nickname);
+
+        if(user == null){
+            msj = "this user doesnt exist";
+        }
+        else{
+            Audio newAudio = searchAudio(nameSong);
+            if(newAudio == null){
+                msj = "the audio doesnt exist";
+            }
+
+            else{
+                if(newAudio instanceof Song){
+                    Song newSong = ( (Song)(newAudio) );
+                    if(user instanceof Standard){
+                        int numBuys = countBuysForUser(nickname);
+                        if(numBuys<100){
+                            Shop newShop = new Shop(dateActual(), nickname, nameSong); 
+                            shops.add(newShop); 
+                            newSong.setNumberSales(newSong.getNumberSales()+1);
+
+                        }else{
+                            msj = "the purchasing limit has been reached "; 
+                        }
+
+                    } else if( user instanceof Premium){
+                        Shop newShop = new Shop(dateActual(), nickname, nameSong); 
+                        shops.add(newShop); 
+                        newSong.setNumberSales(newSong.getNumberSales()+1);
+
+                    }
+                }
+                else if(newAudio instanceof Podcast){
+                    msj = "is not posible buy a podcast";
+                    
+                }
+                else{
+                    msj = "must enter a user type consumer"; 
+                }
+            } 
+
+        }
+        return msj; 
+
+    }
+
+    public int countBuysForUser(String nickname){
+        int count =0; 
+        if(shops.size() != 0){
+
+            for(int i = 0; i <shops.size(); i++ ){
+                shops.get(i).getNickname().equalsIgnoreCase(nickname);
+                count++;
+            }
+
+        }
+        return count; 
+
+    } 
+
 
 }
