@@ -549,6 +549,944 @@ public class MusicAppController {
         return count; 
 
     } 
+    public String infoTotalViews(){
+        String msj = ""; 
+        int totalViews=0;
+        if(audios.size()!=0){
+            for(int i=0;i<audios.size();i++){
+            totalViews+=audios.get(i).getView();
+            }
+        }
+        msj = "the total views is  " + totalViews ;
+        return msj;
+    }
+
+    public String infoMostViewSong(String nickname){
+        String msj = ""; 
+        User user = searchUser(nickname);
+
+        if(user == null){
+            msj = "this user doesnt exist";
+        }
+        else{
+
+            if(user instanceof Standard){
+                Standard standard = ((Standard)(user)); 
+                 msj=mostSongViews() + standard.mostSongViews();
+            }
+            else if(user instanceof Premium){
+                Premium premium = ((Premium)(user)); 
+                 msj=mostSongViews() + premium.mostSongViews();
+
+            }
+            else{
+                msj="you must enter a user type consumer";
+            }
+        }
+    return msj;
+
+    }
+
+    public String mostSongViews(){
+        String msj ="";
+        int[]  geners ={0,0,0,0};
+        int position =0;
+        if(audios.size()!=0){
+            for(int i =0; i< audios.size(); i++){
+                if(audios.get(i) instanceof Song){
+                    Song song = ( (Song)(audios.get(i)) );
+                    switch(song.typeSong()){
+                     case 1:
+                      geners[0]++;
+                      break;
+                     case 2:
+                     geners[1]++;
+                      break;
+                     case 3:
+                     geners[2]++;
+                      break;
+                     case 4:
+                     geners[3]++;
+                      break;
+                     default:
+                      break;
+                   }
+
+                }
+            }
+            int mayor =0;
+            for(int i =0; i<4; i++){
+                if(geners[i]> mayor){
+                    position =i; 
+                }
+            }
+            switch(position){
+             case 0:
+             msj="\n the most listened to genre  rock \n"+"views: "+geners[position];
+             break;
+             case 1:
+             msj="\n the most listened to genre: pop \n"+"views: "+geners[position];
+             break;
+             case 2:
+             msj="\n the most listened to genre : trap \n"+"views: "+geners[position];
+             break;
+             case 3:
+             msj="\n the most listened to genre: house \n"+"views: "+geners[position];
+             break;
+             case 4:
+             msj="the dont exist song";
+             break;
+            }
+
+        }
+        else{
+            msj = "the plataform dont have audios";
+        }
+        return msj; 
+    }
+
+    public String infoMostViewPodcast(String nickname){
+        String msj = ""; 
+        User user = searchUser(nickname);
+
+        if(user == null){
+            msj = "this user doesnt exist";
+        }
+        else{
+
+            if(user instanceof Standard){
+                Standard standard = (Standard) user; 
+                 msj=mostPodcastViews() + standard.mostPodcastViews();
+            }
+            else if(user instanceof Premium){
+                Premium premium = ( Premium) user; 
+                msj=mostPodcastViews() + premium.mostPodcastViews();
+
+            }
+            else{
+                msj="you must enter a user type consumer";
+            }
+        }
+        return msj;
+    }
+
+    public String mostPodcastViews(){
+    String msj="";
+    int [] geners= {0,0,0,0};
+    int position=4;
+     if(audios.size()!=0){
+       for(int i=0; i<audios.size();i++){
+         if(audios.get(i) instanceof Podcast){
+          Podcast podcast = ( (Podcast)(audios.get(i)) );
+           switch(podcast.typePodcast()){
+             case 1:
+              geners[0]++;
+              break;
+             case 2:
+             geners[1]++;
+              break;
+             case 3:
+             geners[2]++;
+              break;
+             case 4:
+             geners[3]++;
+              break;
+             default:
+              break;
+           }
+         }
+       }
+       int mayor=0;
+        for(int i=0; i<4;i++){
+         if(geners[i]>mayor){
+           position=i;
+         }
+        }
+       switch(position){
+         case 0:
+         msj="the most listened to genre: Politic \n"+"views: "+geners[position];
+         break;
+         case 1:
+         msj="the most listened to genre: Entertaiment \n"+"views: "+geners[position];
+         break;
+         case 2:
+         msj="the most listened to genre : Fashion \n"+"views: "+geners[position];
+         break;
+         case 3:
+         msj="the most listened to genre: Videogame \n"+"views: "+geners[position];
+         break;
+         case 4:
+         msj="the dont exist podcast";
+         break;
+       }
+       
+     }
+     else{
+       msj="the plataform dont have audios";
+     }
+    return msj;
+   }
+   public String topArtist(){
+    String msj="";
+    int top1 = 0;
+    int top2 = 0;
+    int top3 = 0;
+    int top4 = 0;
+    int top5 = 0;
+    String name1 = " ";
+    String name2 = " ";
+    String name3 = " ";
+    String name4 = " ";
+    String name5 = " "; 
+    if(users.size()!=0){
+        for(int i = 0; i<users.size(); i++){
+           if(users.get(i) instanceof Artist){
+            Artist obj = (Artist) users.get(i); 
+            if( obj.getTotalViews() > top1){
+                
+                top5 = top4;
+                top4= top3;
+                top3= top2;
+                top2 = top1;
+                top1 = obj.getTotalViews();
+                name5 = name4;
+                name4 = name3;
+                name3 = name2;
+                name2= name1; 
+                name1 =obj.getName(); 
+                
+            } else if(obj.getTotalViews() > top2){
+                
+                top5 = top4;
+                top4= top3;
+                top3= top2;
+                top2 = obj.getTotalViews(); 
+                name5 = name4;
+                name4 = name3;
+                name3 = name2;
+                name2= obj.getName();
+
+            }else if( obj.getTotalViews() > top3){
+
+                top5 = top4;
+                top4= top3;
+                top3= obj.getTotalViews(); 
+                name5 = name4;
+                name4 = name3;
+                name3 = obj.getName();
+
+            } else if( obj.getTotalViews() > top4){
+
+                top5 = top4;
+                top4= obj.getTotalViews(); 
+                name5 = name4;
+                name4 = obj.getName();
+
+            }else if( obj.getTotalViews() > top5){
+
+                top5 = obj.getTotalViews();
+                name5 =  obj.getName(); 
+        
+            }
+        }
+
+      if(top1==0){
+        msj="there are no registered Artist";
+      }
+      else{
+        msj = "top 5 artist \n" +
+        "1."+ name1 + ": " + top1 + "\n"+
+        "2."+ name2 + ": " + top2 + "\n"+
+        "3."+ name3 + ": " + top3 + "\n"+
+        "4."+ name4 + ": " + top4 + "\n"+
+        "5."+ name5 + ": " + top5 + "\n"; 
+      }
+
+        }
+       }
+    else{
+        msj="there are no registered users";
+    }
+    return msj;
+   }
+   public String topCreator(){
+    String msj="";
+    int top1 = 0;
+    int top2 = 0;
+    int top3 = 0;
+    int top4 = 0;
+    int top5 = 0;
+    String name1 = " ";
+    String name2 = " ";
+    String name3 = " ";
+    String name4 = " ";
+    String name5 = " "; 
+       if(users.size()!=0){
+        for(int i = 0; i<users.size(); i++){
+           if(users.get(i) instanceof Creator){
+            Creator obj = (Creator) users.get(i); 
+            if( obj.getTotalViews() > top1){
+                
+                top5 = top4;
+                top4= top3;
+                top3= top2;
+                top2 = top1;
+                top1 = obj.getTotalViews();
+                name5 = name4;
+                name4 = name3;
+                name3 = name2;
+                name2= name1; 
+                name1 =obj.getName(); 
+                
+            } else if(obj.getTotalViews() > top2){
+                
+                top5 = top4;
+                top4= top3;
+                top3= top2;
+                top2 = obj.getTotalViews(); 
+                name5 = name4;
+                name4 = name3;
+                name3 = name2;
+                name2= obj.getName();
+
+            }else if( obj.getTotalViews() > top3){
+
+                top5 = top4;
+                top4= top3;
+                top3= obj.getTotalViews(); 
+                name5 = name4;
+                name4 = name3;
+                name3 = obj.getName();
+
+            } else if( obj.getTotalViews() > top4){
+
+                top5 = top4;
+                top4= obj.getTotalViews(); 
+                name5 = name4;
+                name4 = obj.getName();
+
+            }else if( obj.getTotalViews() > top5){
+
+                top5 = obj.getTotalViews();
+                name5 =  obj.getName(); 
+        
+            }
+        }
+
+      if(top1==0){
+        msj="there are no registered Creator";
+      }
+      else{
+        msj = "top 5 Creator \n" +
+        "1."+ name1 + ": " + top1 + "\n"+
+        "2."+ name2 + ": " + top2 + "\n"+
+        "3."+ name3 + ": " + top3 + "\n"+
+        "4."+ name4 + ": " + top4 + "\n"+
+        "5."+ name5 + ": " + top5 + "\n"; 
+      }
+
+        }
+       }
+    else{
+        msj="there are no registered users";
+    }
+    return msj;
+   }
+
+   public String topSong(){
+    String msj = ""; 
+    int top1 = 0;
+    int top2 = 0;
+    int top3 = 0;
+    int top4 = 0;
+    int top5 = 0;
+    int top6 = 0;
+    int top7 = 0;
+    int top8 = 0;
+    int top9 = 0;
+    int top10 = 0;
+    String type1 = "";
+    String type2 = "";
+    String type3 = "";
+    String type4 = "";
+    String type5 = "";
+    String type6 = "";
+    String type7 = "";
+    String type8 = "";
+    String type9 = "";
+    String type10 = "";
+    String name1 = "";
+    String name2 = "";
+    String name3 = "";
+    String name4 = "";
+    String name5 = "";
+    String name6 = "";
+    String name7 = "";
+    String name8 = "";
+    String name9 = "";
+    String name10 = ""; 
+
+    if(audios.size()!=0){
+        for(int i = 0; i<audios.size(); i++){
+           if(audios.get(i) instanceof Song){
+            Song obj = (Song) audios.get(i); 
+            if( obj.getView() > top1){
+                
+                top10=top9; 
+                top9 = top8;
+                top8= top7;
+                top7= top6;
+                top6 = top5;
+                top5 = top4;
+                top4= top3;
+                top3= top2;
+                top2 = top1;
+                top1 = obj.getView();
+                name10= name9;
+                name9= name8;
+                name8= name7;
+                name7= name6;
+                name6= name5;
+                name5 = name4;
+                name4 = name3;
+                name3 = name2;
+                name2= name1; 
+                name1 =obj.getName(); 
+                type10 = type9;
+                type9 = type8;
+                type8= type7;
+                type7 = type6;
+                type6 = type5;
+                type5 = type4;
+                type4 = type3;
+                type3 = type2;
+                type2 = type1;
+                type1 = obj.typeStringSong(); 
+                
+            } else if(obj.getView() > top2){
+                
+                top10=top9; 
+                top9 = top8;
+                top8= top7;
+                top7= top6;
+                top6 = top5;
+                top5 = top4;
+                top4= top3;
+                top3= top2;
+                top2 = obj.getView(); 
+                name10= name9;
+                name9= name8;
+                name8= name7;
+                name7= name6;
+                name6= name5;
+                name5 = name4;
+                name4 = name3;
+                name3 = name2;
+                name2= obj.getName();
+                type10 = type9;
+                type9 = type8;
+                type8= type7;
+                type7 = type6;
+                type6 = type5;
+                type5 = type4;
+                type4 = type3;
+                type3 = type2;
+                type2 = obj.typeStringSong();
+
+            }else if( obj.getView() > top3){
+
+                top10=top9; 
+                top9 = top8;
+                top8= top7;
+                top7= top6;
+                top6 = top5;
+                top5 = top4;
+                top4= top3;
+                top3= obj.getView(); 
+                name10= name9;
+                name9= name8;
+                name8= name7;
+                name7= name6;
+                name6= name5;
+                name5 = name4;
+                name4 = name3;
+                name3 = obj.getName();
+                type10 = type9;
+                type9 = type8;
+                type8= type7;
+                type7 = type6;
+                type6 = type5;
+                type5 = type4;
+                type4 = type3;
+                type3 = obj.typeStringSong(); 
+
+
+            } else if( obj.getView() > top4){
+
+                top10=top9; 
+                top9 = top8;
+                top8= top7;
+                top7= top6;
+                top6 = top5;
+                top5 = top4;
+                top4= obj.getView(); 
+                name10= name9;
+                name9= name8;
+                name8= name7;
+                name7= name6;
+                name6= name5;
+                name5 = name4;
+                name4 = obj.getName();
+                type10 = type9;
+                type9 = type8;
+                type8= type7;
+                type7 = type6;
+                type6 = type5;
+                type5 = type4;
+                type4 = obj.typeStringSong();
+
+
+            }else if( obj.getView() > top5){
+
+                top10=top9; 
+                top9 = top8;
+                top8= top7;
+                top7= top6;
+                top6 = top5;
+                top5 = obj.getView();
+                name10= name9;
+                name9= name8;
+                name8= name7;
+                name7= name6;
+                name6= name5;
+                name5 =  obj.getName(); 
+                type10 = type9;
+                type9 = type8;
+                type8= type7;
+                type7 = type6;
+                type6 = type5;
+                type5 = obj.typeStringSong();
+        
+            } else if(obj.getView() > top6){
+                top10=top9; 
+                top9 = top8;
+                top8= top7;
+                top7= top6;
+                top6 = obj.getView();
+                name10= name9;
+                name9= name8;
+                name8= name7;
+                name7= name6;
+                name6= obj.getName();
+                type10 = type9;
+                type9 = type8;
+                type8= type7;
+                type7 = type6;
+                type6 = obj.typeStringSong();
+
+            } else if( obj.getView()>top7){
+                top10=top9; 
+                top9 = top8;
+                top8= top7;
+                top7= obj.getView();
+                name10= name9;
+                name9= name8;
+                name8= name7;
+                name7= obj.getName();
+                type10 = type9;
+                type9 = type8;
+                type8= type7;
+                type7 = obj.typeStringSong();
+            } else if(obj.getView()> top8){
+                top10=top9; 
+                top9 = top8;
+                top8= obj.getView();
+                name10= name9;
+                name9= name8;
+                name8= obj.getName();
+                type10 = type9;
+                type9 = type8;
+                type8= obj.typeStringSong(); 
+            } else if(obj.getView()> top9){
+                top10=top9; 
+                top9 = obj.getView();
+                name10= name9;
+                name9= obj.getName();
+                type10 = type9;
+                type9 = obj.typeStringSong();
+            } else if(obj.getView()>10){
+                top10 = obj.getView();
+                name10 = obj.getName();
+                type10 = obj.typeStringSong(); 
+            }
+        }
+
+      if(top1==0){
+        msj="there are not registered a song :( ";
+      }
+      else{
+        msj = "top 10 songs \n" +
+        "1."+ name1 + ": views " + top1 + " genre : "+ type1 + "\n"+
+        "2."+ name2 + ": views " + top2 + " genre : "+ type2 +"\n"+ 
+        "3."+ name3 + ": views " + top3 + " genre : "+ type3 +"\n"+
+        "4."+ name4 + ": views " + top4 + " genre : "+ type4 +"\n"+
+        "5."+ name5 + ": views " + top5 + " genre : "+ type5 +"\n" +
+        "6."+ name6 + ": views " + top6 + " genre : "+ type6 +"\n" +
+        "7."+ name7 + ": views " + top7 + " genre : "+ type7 +"\n" +
+        "8."+ name8 + ": views " + top8 + " genre : "+ type8 +"\n" +
+        "9."+ name9 + ": views " + top9 + " genre : "+ type9 +"\n" +
+        "10."+ name10 + ": views " + top10 + " genre : "+ type10 +"\n";
+
+      }
+
+        }
+       }
+    else{
+        msj="there are no registered songs";
+    }
+    return msj;
+
+   }
+
+   public String topPodcast(){
+    String msj = ""; 
+    int top1 = 0;
+    int top2 = 0;
+    int top3 = 0;
+    int top4 = 0;
+    int top5 = 0;
+    int top6 = 0;
+    int top7 = 0;
+    int top8 = 0;
+    int top9 = 0;
+    int top10 = 0;
+    String type1 = "";
+    String type2 = "";
+    String type3 = "";
+    String type4 = "";
+    String type5 = "";
+    String type6 = "";
+    String type7 = "";
+    String type8 = "";
+    String type9 = "";
+    String type10 = "";
+    String name1 = "";
+    String name2 = "";
+    String name3 = "";
+    String name4 = "";
+    String name5 = "";
+    String name6 = "";
+    String name7 = "";
+    String name8 = "";
+    String name9 = "";
+    String name10 = ""; 
+
+    if(audios.size()!=0){
+        for(int i = 0; i<audios.size(); i++){
+           if(audios.get(i) instanceof Podcast){
+            Podcast obj = (Podcast) audios.get(i); 
+            if( obj.getView() > top1){
+                
+                top10=top9; 
+                top9 = top8;
+                top8= top7;
+                top7= top6;
+                top6 = top5;
+                top5 = top4;
+                top4= top3;
+                top3= top2;
+                top2 = top1;
+                top1 = obj.getView();
+                name10= name9;
+                name9= name8;
+                name8= name7;
+                name7= name6;
+                name6= name5;
+                name5 = name4;
+                name4 = name3;
+                name3 = name2;
+                name2= name1; 
+                name1 =obj.getName(); 
+                type10 = type9;
+                type9 = type8;
+                type8= type7;
+                type7 = type6;
+                type6 = type5;
+                type5 = type4;
+                type4 = type3;
+                type3 = type2;
+                type2 = type1;
+                type1 = obj.typeStringPodcast(); 
+                
+            } else if(obj.getView() > top2){
+                
+                top10=top9; 
+                top9 = top8;
+                top8= top7;
+                top7= top6;
+                top6 = top5;
+                top5 = top4;
+                top4= top3;
+                top3= top2;
+                top2 = obj.getView(); 
+                name10= name9;
+                name9= name8;
+                name8= name7;
+                name7= name6;
+                name6= name5;
+                name5 = name4;
+                name4 = name3;
+                name3 = name2;
+                name2= obj.getName();
+                type10 = type9;
+                type9 = type8;
+                type8= type7;
+                type7 = type6;
+                type6 = type5;
+                type5 = type4;
+                type4 = type3;
+                type3 = type2;
+                type2 = obj.typeStringPodcast();
+
+            }else if( obj.getView() > top3){
+
+                top10=top9; 
+                top9 = top8;
+                top8= top7;
+                top7= top6;
+                top6 = top5;
+                top5 = top4;
+                top4= top3;
+                top3= obj.getView(); 
+                name10= name9;
+                name9= name8;
+                name8= name7;
+                name7= name6;
+                name6= name5;
+                name5 = name4;
+                name4 = name3;
+                name3 = obj.getName();
+                type10 = type9;
+                type9 = type8;
+                type8= type7;
+                type7 = type6;
+                type6 = type5;
+                type5 = type4;
+                type4 = type3;
+                type3 = obj.typeStringPodcast(); 
+
+
+            } else if( obj.getView() > top4){
+
+                top10=top9; 
+                top9 = top8;
+                top8= top7;
+                top7= top6;
+                top6 = top5;
+                top5 = top4;
+                top4= obj.getView(); 
+                name10= name9;
+                name9= name8;
+                name8= name7;
+                name7= name6;
+                name6= name5;
+                name5 = name4;
+                name4 = obj.getName();
+                type10 = type9;
+                type9 = type8;
+                type8= type7;
+                type7 = type6;
+                type6 = type5;
+                type5 = type4;
+                type4 = obj.typeStringPodcast();
+
+
+            }else if( obj.getView() > top5){
+
+                top10=top9; 
+                top9 = top8;
+                top8= top7;
+                top7= top6;
+                top6 = top5;
+                top5 = obj.getView();
+                name10= name9;
+                name9= name8;
+                name8= name7;
+                name7= name6;
+                name6= name5;
+                name5 =  obj.getName(); 
+                type10 = type9;
+                type9 = type8;
+                type8= type7;
+                type7 = type6;
+                type6 = type5;
+                type5 = obj.typeStringPodcast();
+        
+            } else if(obj.getView() > top6){
+                top10=top9; 
+                top9 = top8;
+                top8= top7;
+                top7= top6;
+                top6 = obj.getView();
+                name10= name9;
+                name9= name8;
+                name8= name7;
+                name7= name6;
+                name6= obj.getName();
+                type10 = type9;
+                type9 = type8;
+                type8= type7;
+                type7 = type6;
+                type6 = obj.typeStringPodcast();
+
+            } else if( obj.getView()>top7){
+                top10=top9; 
+                top9 = top8;
+                top8= top7;
+                top7= obj.getView();
+                name10= name9;
+                name9= name8;
+                name8= name7;
+                name7= obj.getName();
+                type10 = type9;
+                type9 = type8;
+                type8= type7;
+                type7 = obj.typeStringPodcast();
+            } else if(obj.getView()> top8){
+                top10=top9; 
+                top9 = top8;
+                top8= obj.getView();
+                name10= name9;
+                name9= name8;
+                name8= obj.getName();
+                type10 = type9;
+                type9 = type8;
+                type8= obj.typeStringPodcast(); 
+            } else if(obj.getView()> top9){
+                top10=top9; 
+                top9 = obj.getView();
+                name10= name9;
+                name9= obj.getName();
+                type10 = type9;
+                type9 = obj.typeStringPodcast();
+            } else if(obj.getView()>10){
+                top10 = obj.getView();
+                name10 = obj.getName();
+                type10 = obj.typeStringPodcast(); 
+            }
+        }
+
+      if(top1==0){
+        msj="there are not registered a podcast :( ";
+      }
+      else{
+        msj = "top 10 podcasts \n" +
+        "1."+ name1 + ": views " + top1 + " genre : "+ type1 + "\n"+
+        "2."+ name2 + ": views " + top2 + " genre : "+ type2 +"\n"+ 
+        "3."+ name3 + ": views " + top3 + " genre : "+ type3 +"\n"+
+        "4."+ name4 + ": views " + top4 + " genre : "+ type4 +"\n"+
+        "5."+ name5 + ": views " + top5 + " genre : "+ type5 +"\n" +
+        "6."+ name6 + ": views " + top6 + " genre : "+ type6 +"\n" +
+        "7."+ name7 + ": views " + top7 + " genre : "+ type7 +"\n" +
+        "8."+ name8 + ": views " + top8 + " genre : "+ type8 +"\n" +
+        "9."+ name9 + ": views " + top9 + " genre : "+ type9 +"\n" +
+        "10."+ name10 + ": views " + top10 + " genre : "+ type10 +"\n";
+
+      }
+
+        }
+       }
+    else{
+        msj="there are no registered podcasts ";
+    }
+    return msj;
+
+
+   }
+   public String infoSongsSold(){
+    String msj = ""; 
+    int countRock = 0;
+    int countPop =0;
+    int countTrap =0;
+    int countHouse =0; 
+    if(audios.size()!=0){
+            for(int i =0; i< audios.size(); i++){
+                if(audios.get(i) instanceof Song){
+                    Song song = ( (Song)(audios.get(i)) );
+                    switch(song.typeSong()){
+                     case 1:
+                      countRock += song.getNumberSales(); 
+                      break;
+                     case 2:
+                     countPop += song.getNumberSales(); 
+                      break;
+                     case 3:
+                     countTrap += song.getNumberSales(); 
+                      break;
+                     case 4:
+                     countHouse += song.getNumberSales(); 
+                      break;
+
+                     default:
+                      break;
+                   }
+
+                }
+            }
+        }else{
+             msj="the plataform dont have audios";
+        }
+
+        msj = "the number sales for genre is: \n" +
+            "Rock: " + countRock + "\n"+
+            "Pop: " +  countPop + "\n"+
+            "Trap: " + countTrap +"\n"+
+            "House: "+ countHouse + "\n"; 
+        return msj; 
+
+   }
+
+   public String totalSalesSongs(){
+    String msj = ""; 
+    double totalSales = 0.0; 
+    if(audios.size()!=0){
+            for(int i =0; i< audios.size(); i++){
+                if(audios.get(i) instanceof Song){
+                    Song song = ( (Song)(audios.get(i)) );
+                    totalSales += song.getNumberSales() *  song.getPrice(); 
+                }
+            }
+        }else{
+            msj="the plataform dont have audios";
+        }
+        msj = " the total sales value of the songs is... " + totalSales; 
+        return msj; 
+   }
+   public String mostSoldSong(){
+    String msj = ""; 
+    int solds =0;
+    String name = "";
+    double totalSales =0.0; 
+
+    if(audios.size() !=0){
+        for(int i =0; i< audios.size(); i++){
+            if(audios.get(i) instanceof Song){
+                Song song = ( (Song)(audios.get(i)) );
+                if(song.getNumberSales() > solds){
+                    solds = song.getNumberSales();
+                    name = song.getName(); 
+                    totalSales = song.getNumberSales() * song.getPrice(); 
+                }
+            }
+        }
+
+    } else{
+        msj = "the plataform dont have audios"; 
+      }
+
+      msj = "the most selling song is  " +  name + " to these sales " + solds + " and the total sales value " + totalSales; 
+      return msj; 
+   }
 
 
 }

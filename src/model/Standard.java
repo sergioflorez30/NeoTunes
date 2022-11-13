@@ -259,6 +259,119 @@ public class Standard extends Consumer implements ICreatePlaylist, IEditPlaylist
 
         return msj;
     }
+    public String mostSongViews(){
+      String msj="";
+      int [] geners= {0,0,0,0};
+      int position=0;
+       if(audios.size()!=0){
+         for(int i=0; i<audios.size();i++){
+           if(audios.get(i) instanceof Song){
+             Song song = ( (Song)(audios.get(i)) );
+             switch(song.typeSong()){
+               case 1:
+                geners[0]++;
+                break;
+               case 2:
+               geners[1]++;
+                break;
+               case 3:
+               geners[2]++;
+                break;
+               case 4:
+               geners[3]++;
+                break;
+               default:
+                break;
+             }
+           }
+         }
+         int mayor=0;
+          for(int i=0; i<4;i++){
+           if(geners[i]>mayor){
+             position=i;
+           }
+          }
+         switch(position){
+           case 0:
+           msj="the most listened to genre for this user: rock \n"+"views: "+geners[position];
+           break;
+           case 1:
+           msj="the most listened to genre for this user: pop \n"+"views: "+geners[position];
+           break;
+           case 2:
+           msj="the most listened to genre for this user: trap \n"+"views: "+geners[position];
+           break;
+           case 3:
+           msj="the most listened to genre for this user: house \n"+"views: "+geners[position];
+           break;
+           case 4:
+           msj="the dont exist song";
+           break;
+         }
+         
+       }
+       else{
+         msj="the user dont have reproduction";
+       }
+      return msj;
+     }
+     public String mostPodcastViews(){
+      String msj="";
+      int [] geners= {0,0,0,0};
+      int position=0;
+       if(audios.size()!=0){
+         for(int i=0; i<audios.size();i++){
+           if(audios.get(i) instanceof Podcast){
+            Podcast podcast = ( (Podcast)(audios.get(i)) );
+             switch(podcast.typePodcast()){
+               case 1:
+                geners[0]++;
+                break;
+               case 2:
+               geners[1]++;
+                break;
+               case 3:
+               geners[2]++;
+                break;
+               case 4:
+               geners[3]++;
+                break;
+               default:
+                break;
+             }
+           }
+         }
+         int mayor=0;
+          for(int i=0; i<4;i++){
+           if(geners[i]>mayor){
+             position=i;
+           }
+          }
+         switch(position){
+           case 0:
+           msj="the most listened to genre for this user: Politic \n"+"views: "+geners[position];
+           break;
+           case 1:
+           msj="the most listened to genre for this user: Entertaiment \n"+"views: "+geners[position];
+           break;
+           case 2:
+           msj="the most listened to genre for this user: Fashion \n"+"views: "+geners[position];
+           break;
+           case 3:
+           msj="the most listened to genre for this user: Videogame \n"+"views: "+geners[position];
+           break;
+           case 4:
+           msj="the dont exist podcast";
+           break;
+         }
+         
+       }
+       else{
+         msj="the user dont have reproduction";
+       }
+      return msj;
+     }
+
 
 
 

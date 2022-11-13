@@ -38,5 +38,41 @@ public class Podcast extends Audio{
     public void setTypePodcast(TypePodcast typePodcast) {
         this.typePodcast = typePodcast;
     }
+    public int typePodcast(){
+        switch (typePodcast) {
+            case POLITIC:
+                return 1;
+            case ENTERTAIMENT:
+                return 2;
+            case FASHION:
+                return 3;
+            case VIDEOGAME:
+                return 4;
+            default:
+             return 0;
+     }  
+
+    }
+
+    public String typeStringPodcast(){
+        String msj = ""; 
+        switch(typePodcast){
+        case POLITIC:
+             msj = "politic";
+            return msj;
+        case ENTERTAIMENT:
+             msj = "entertaiment";
+            return msj;
+        case FASHION:
+             msj = "fashion";
+            return msj;
+        case VIDEOGAME:
+             msj = "videogame";
+            return msj;
+        default:
+            return null;  
+
+        }
+    }
 
 }

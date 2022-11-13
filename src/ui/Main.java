@@ -58,9 +58,10 @@ public class Main {
 				"3. register song or Podcast\n" +
 				"4. register playlist\n" +
 				"5. edit playlist\n" +
-				"6.Share a playlist.\n" + 
+				"6. Share a playlist.\n" + 
 				"7. play an audio. \n" +
-				"8. boy a song \n" + 
+				"8. buy a song \n" + 
+				"9. generate reports \n" +
 				"0. Exit. ");
 		option =  validateIntegerInput();
 		return option; 
@@ -79,7 +80,7 @@ public class Main {
 		int duration =0;
 		int typeSong = 0; 
 		int typePodcast =0; 
-		double price =0.0;   
+		double price =0.0;    
 
 		switch(option){
 			case 1:
@@ -242,11 +243,64 @@ public class Main {
 		     	audio = reader.next();
 
 		     	System.out.println(controller.buySong(nickname, audio));
+		     	break;
+
+		     case 9:
+		     	System.out.println("which report do you want to know \n" +
+		     		"1. inform the spacing of reproductions\n"+
+		     		"2. report the genre of song most heard by a user and the entire platform\n"+
+		     		"3. report the podcast genre most heard by a user and the entire platform\n"+
+		     		"4. top 5 creators and artists\n"+
+		     		"5. top 10 songs and podcast\n"+
+		     		"6. number of songs sold per genre and total sales value\n"+
+		     		"7. the most selling song on the platform\n");
+		        option = validateIntegerInput();
+		        String nickname1 = "";
+		        String nickname2 = ""; 
+		        switch(option){
+		            case 1:
+			            System.out.println(controller.infoTotalViews());
+			            break;
+
+		            case 2:
+			             System.out.println("type the users nickname standard ");
+			             nickname1 = reader.next();
+			             System.out.println(controller.infoMostViewSong(nickname1));
+			            break;
+
+		            case 3:
+			             System.out.println("type the users nickname standard ");
+			             nickname2 = reader.next();
+			             System.out.println(controller.infoMostViewPodcast(nickname2));
+			            break;
+
+		            case 4:
+			            System.out.println(controller.topArtist());
+			            System.out.println(controller.topCreator());
+			            break;
+
+		        	case 5:
+		        		System.out.println(controller.topSong()); 
+		        		System.out.println(controller.topPodcast());
+		        		break;
+
+		        	case 6:
+		        		System.out.println(controller.infoSongsSold());
+		        		System.out.println(controller.totalSalesSongs());
+		        		break;
+
+		        	case 7:
+		        		System.out.println(controller.mostSoldSong()); 
+		        		break; 
+
+
+		            default:
+		            System.out.println("Invalid Option");
+		            break;
+		        }
 
 
 		     	break;
-
-
 
 			case 0: 
 				System.out.println("Exit program.");

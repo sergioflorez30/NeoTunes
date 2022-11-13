@@ -66,5 +66,40 @@ public class Song extends Audio{
     public void setTypeSong(TypeSong typeSong) {
         this.typeSong = typeSong;
     }
+    public int typeSong(){
+        switch (typeSong) {
+            case ROCK:
+                return 1;
+            case POP:
+                return 2;
+            case TRAP:
+                return 3;
+            case HOUSE:
+                return 4;
+            default:
+             return 0;
+     }  
+
+    }
+
+    public String typeStringSong(){
+        String  msj = ""; 
+        switch(typeSong){
+        case ROCK:
+            msj = "rock";
+            return msj;
+        case POP:
+            msj = "pop";
+            return msj;
+        case TRAP:
+             msj = "trap";
+            return msj;
+        case HOUSE:
+            msj = "house"; 
+            return msj;
+        default:
+            return null; 
+        }
+    }
 
 }
