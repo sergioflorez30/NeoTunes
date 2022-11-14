@@ -72,16 +72,14 @@ public class MusicAppController {
      */
 
     public int[][] generateMatriz(){
+      int matriz[][]=new int[6][6];
 
-        int matriz[][]=new int[ROWS][COLUMNS];
-
-        for(int i=0;i<ROWS;i++){
-            for(int j=0;i<COLUMNS;i++){
-                matriz[i][j]=generateNumber();
-            }
+      for(int i=0;i<6;i++){
+        for(int j=0;j<6;j++){
+            matriz[i][j]=generateNumber();
         }
-
-        return matriz;
+      }
+      return matriz;
 
     }
     /**
@@ -90,13 +88,14 @@ public class MusicAppController {
      */
 
     public int generateNumber(){
-
-        Random r= new Random();
+        
+         Random r= new Random();
        
          int value = r.nextInt(8 + 1) + 1;
        
         return value;
-    }
+       
+       }
     /**
      * generateCode: this method generate a code depended of the playlist type
      * @param option: int: the playlist type.
@@ -104,55 +103,54 @@ public class MusicAppController {
      * @return code : a msj of the matriz. 
      */
     public String generateCode(int option,int[][]matriz){
-        String code=null;
-        switch(option){
-            case 1:
-             for(int i=5;i>0;i--){
-                code+=matriz[i][0];
-             }
-             for(int j=1;j<5;j++){
-                code+=matriz[j][j];
-             }
-             for(int k=5;k>0;k--){
-                code+=matriz[k][5];
-             }
-            break;
-
-            case 2:
-             for(int i=0;i<2;i++){
-                code+=matriz[0][i];
-             }
-             for(int j=1;j<5;j++){
-                code+=matriz[j][2];
-             } 
-             for(int k=5;k>0;k--){
-                code+=matriz[k][3];
-             }
-             for(int u=3;u<5;u++){
-                code+=matriz[0][u];
-             }
-
-             break;
-               
-             case 3:
-             for (int i=5;i>=0;i--){
-                for(int j=5;j>=0;j--){
-                    int sum = i+j;
-                    if (sum%2!=0){
-                        if(sum!=1){
-                            code+=matriz[i][j]+" ";
-                        }
-                    }
-
-                }
-            }
-             break;
-
-
-           }
-
-      return code;
-
+        String code="";
+         switch(option){
+          case 1:
+          for (int i = matriz.length; i > 0; i--) {
+            code += matriz[i - 1][0];
+          }
+              for (int i = 1, j = 1; i < matriz.length -1; i++, j++) {           
+                code+= matriz[i][j];        
+              }
+          for (int i = matriz.length; i > 0; i--) { 
+            code += matriz[i - 1][matriz[0].length - 1];
+          }
+           break;
+  
+          case 2:
+          for (int j = 0; j < matriz.length -4; j++) { 
+            code+= matriz[0][j];
+          }
+          for (int i = 0; i < matriz.length; i++) { 
+            code += matriz[i][2];
+          }
+          for (int i = matriz.length; i > 0; i--) { 
+            code += matriz[i - 1][3];
+          }
+          for (int j = matriz.length -2; j < matriz.length; j++ ) { 
+            code += matriz[0][j];
+          }
+  
+           break;
+             
+           case 3:
+           for (int i=5;i>=0;i--){
+              for(int j=5;j>=0;j--){
+                  int sum = i+j;
+                  if (sum%2!=0){
+                      if(sum!=1){
+                          code+=matriz[i][j]+" ";
+                      }
+                  }
+  
+              }
+          }
+           break;
+  
+  
+         }
+  
+        return code;
     }
     /**
      * registerProducer: this method register a producer.
@@ -409,7 +407,7 @@ public class MusicAppController {
         } else{
             if(user instanceof Standard){
                 Standard newStandart = ( (Standard)(user) );
-                code = newStandart.sharePlaylist(namePlaylist)+ "\n" + newStandart.sharePlaylistMatriz(namePlaylist);
+                code = newStandart.sharePlaylist(namePlaylist) + "\n" + newStandart.sharePlaylistMatriz(namePlaylist);
             }
             else if(user instanceof Premium){
                 Premium newPremium = ( (Premium)(user) );

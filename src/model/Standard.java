@@ -242,7 +242,7 @@ public class Standard extends Consumer implements ICreatePlaylist, IEditPlaylist
 
         Random r= new Random();
        
-         int value = r.nextInt(8 + 1) + 1;
+         int value = r.nextInt(2 + 1) + 1;
        
         return value;
     }
