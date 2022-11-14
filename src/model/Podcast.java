@@ -38,6 +38,7 @@ public class Podcast extends Audio{
     public void setTypePodcast(TypePodcast typePodcast) {
         this.typePodcast = typePodcast;
     }
+    
     public int typePodcast(){
         switch (typePodcast) {
             case POLITIC:

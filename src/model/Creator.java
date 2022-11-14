@@ -18,7 +18,11 @@ public class Creator extends Producer{
     public void setPodcasts(ArrayList<Podcast> podcasts) {
         this.podcasts = podcasts;
     }
-    
+    /**
+     * searchAudioAutor: this method search a audio for this creator. 
+     * @param podcast: Podcast: the obj podcast
+     * @return isFoud : boolean: if is found o isnot found. 
+     */
     public boolean searchAudioAutor(Podcast podcast){
         boolean isFound= false;
         for(int i=0;i<podcasts.size() && !isFound ;i++){

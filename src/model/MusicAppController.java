@@ -393,6 +393,12 @@ public class MusicAppController {
         return msj;
 
     }
+    /**
+     * SharePlaylist: this method share a specific  users playlist. 
+     * @param nickname : String : this is the user nickname.
+     * @param namePlaylist: String: this is de playlist name.
+     * @return  code: String: the playlist. 
+     */
 
     public String sharePlaylist(String nickname, String namePlaylist){
         String code = ""; 
@@ -416,6 +422,12 @@ public class MusicAppController {
 
         return code; 
     }
+    /**
+     * playingAudio: this method plays an audio. 
+     * @param nickname : String : this is the user nickname.
+     * @param audio: String: the audios name.
+     * @return  msj: String: a confirm message.
+     */
     public String playingAudio(String nickname, String audio){
 
         String msj = ""; 
@@ -486,6 +498,12 @@ public class MusicAppController {
 
         }
     }
+    /**
+     * buySong: this method buys an song. 
+     * @param nickname : String : this is the user nickname.
+     * @param nameSong: String: the audios name.
+     * @return  msj: String: a confirm message.
+     */
 
     public String buySong(String nickname, String nameSong){
 
@@ -535,6 +553,11 @@ public class MusicAppController {
         return msj; 
 
     }
+    /**
+     * countBuysForUser: this method count the buys for user. 
+     * @param nickname : String : this is the user nickname.
+     * @return  count: int: a int count .
+     */
 
     public int countBuysForUser(String nickname){
         int count =0; 
@@ -549,6 +572,10 @@ public class MusicAppController {
         return count; 
 
     } 
+    /**
+     * infoTotalViews: this method inform the total views
+     * @return msj: a confirmation message.
+     */
     public String infoTotalViews(){
         String msj = ""; 
         int totalViews=0;
@@ -560,6 +587,11 @@ public class MusicAppController {
         msj = "the total views is  " + totalViews ;
         return msj;
     }
+    /**
+     * infoMostViewSong: this method inform the most view song for user. 
+     * @param nickname : String : this is the user nickname.
+     * @return msj: String : a confirmation message.
+     */
 
     public String infoMostViewSong(String nickname){
         String msj = ""; 
@@ -586,6 +618,10 @@ public class MusicAppController {
     return msj;
 
     }
+    /**
+     * mostSongViews: this method inform the most view song in the app. 
+     * @return msj: String : a confirmation message.
+     */
 
     public String mostSongViews(){
         String msj ="";
@@ -644,6 +680,11 @@ public class MusicAppController {
         }
         return msj; 
     }
+    /**
+     * infoMostViewPodcast: this method inform the most view podcast for user. 
+     * @param nickname : String : this is the user nickname.
+     * @return msj: String : a confirmation message.
+     */
 
     public String infoMostViewPodcast(String nickname){
         String msj = ""; 
@@ -669,6 +710,10 @@ public class MusicAppController {
         }
         return msj;
     }
+    /**
+     * mostPodcastViews: this method inform the most view podcast in the app. 
+     * @return msj: String : a confirmation message.
+     */
 
     public String mostPodcastViews(){
     String msj="";
@@ -726,6 +771,10 @@ public class MusicAppController {
      }
     return msj;
    }
+   /**
+     * topArtist: this method inform the top artist in the app.
+     * @return msj: String : a confirmation message with the top.
+     */
    public String topArtist(){
     String msj="";
     int top1 = 0;
@@ -809,6 +858,12 @@ public class MusicAppController {
     }
     return msj;
    }
+
+   /**
+     * topCreator: this method inform the top creators in the app.
+     * @return msj: String : a confirmation message with the top.
+     */
+
    public String topCreator(){
     String msj="";
     int top1 = 0;
@@ -892,6 +947,11 @@ public class MusicAppController {
     }
     return msj;
    }
+
+   /**
+     * topSong: this method inform the top songs in the app.
+     * @return msj: String : a confirmation message with the top.
+     */
 
    public String topSong(){
     String msj = ""; 
@@ -1147,6 +1207,10 @@ public class MusicAppController {
     return msj;
 
    }
+   /**
+     * topPodcast: this method inform the top podcasts in the app.
+     * @return msj: String : a confirmation message with the top.
+     */
 
    public String topPodcast(){
     String msj = ""; 
@@ -1403,6 +1467,11 @@ public class MusicAppController {
 
 
    }
+
+   /**
+     * infoSongsSold: this method inform the song sold for genred in the app.
+     * @return msj: String : a informative message.
+     */
    public String infoSongsSold(){
     String msj = ""; 
     int countRock = 0;
@@ -1445,6 +1514,10 @@ public class MusicAppController {
         return msj; 
 
    }
+    /**
+     * totalSalesSongs: this method inform the total sales for song sold  in the app.
+     * @return msj: String : a informative message.
+     */
 
    public String totalSalesSongs(){
     String msj = ""; 
@@ -1462,6 +1535,11 @@ public class MusicAppController {
         msj = " the total sales value of the songs is... " + totalSales; 
         return msj; 
    }
+
+   /**
+     * mostSoldSong: this method inform the most sold song in the app.
+     * @return msj: String : a informative message.
+     */
    public String mostSoldSong(){
     String msj = ""; 
     int solds =0;

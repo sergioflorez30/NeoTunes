@@ -148,6 +148,11 @@ public class Premium extends Consumer implements ICreatePlaylist, IEditPlaylist,
        return msj;
 
     }
+    /**
+     * SharePlaylist: this method share a specific  users playlist. 
+     * @param namePlaylist: String: this is de playlist name.
+     * @return  msj: string: String: the playlist. 
+     */
 
     @Override
     public String sharePlaylist(String namePlaylist){
@@ -163,6 +168,11 @@ public class Premium extends Consumer implements ICreatePlaylist, IEditPlaylist,
        return msj;
 
     }
+    /**
+     * sharePlaylistMatriz: this method share a matriz playlist  for user.
+     * @param namePlaylist: String: this is de playlist name.
+     * @return   msj: string: String: the playlist. 
+     */
 
     @Override
     public String sharePlaylistMatriz(String namePlaylist){
@@ -178,6 +188,11 @@ public class Premium extends Consumer implements ICreatePlaylist, IEditPlaylist,
           return msj;
         
     }
+    /**
+     * printMatrix: this method print the matriz playlist  for user.
+     * @param matrix: int[][]: this is the matrix.
+     * @return   print : string: String: the playlists matrix. 
+     */
 
     @Override
     public String printMatrix(int[][] matrix){
@@ -192,6 +207,11 @@ public class Premium extends Consumer implements ICreatePlaylist, IEditPlaylist,
       return print;
         
     }
+    /**
+     * play: this method plays an audio. 
+     * @param audio: Audio: the audios name.
+     * @return  msj: String: a confirm message.
+     */
     
     @Override
     public String play(Audio audio){
@@ -199,6 +219,10 @@ public class Premium extends Consumer implements ICreatePlaylist, IEditPlaylist,
       audios.add(audio);
       return msj;
     }
+    /**
+     * mostSongViews: this method inform the most view song in the app. 
+     * @return msj: String : a confirmation message.
+     */
 
     public String mostSongViews(){
      String msj="";
@@ -256,6 +280,11 @@ public class Premium extends Consumer implements ICreatePlaylist, IEditPlaylist,
       }
      return msj;
     }
+    /**
+     * mostPodcastViews: this method inform the most view podcast in the app. 
+     * @return msj: String : a confirmation message.
+     */
+    
     public String mostPodcastViews(){
       String msj="";
       int [] geners= {0,0,0,0};
